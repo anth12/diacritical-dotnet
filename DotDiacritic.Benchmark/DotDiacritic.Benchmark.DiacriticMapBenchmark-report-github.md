@@ -9,8 +9,8 @@ Frequency=2742187 Hz, Resolution=364.6724 ns, Timer=TSC
 
 
 ```
-|               Method |     Mean |     Error |    StdDev |   Median | Rank |
-|--------------------- |---------:|----------:|----------:|---------:|-----:|
-|      LatinOnlyString | 218.0 ns |  5.130 ns |  14.55 ns | 212.4 ns |    1 |
-| ShortDiacriticString | 501.4 ns |  9.930 ns |  28.33 ns | 494.7 ns |    2 |
-|  LongDiacriticString | 613.3 ns | 36.738 ns | 108.32 ns | 576.4 ns |    3 |
+|               Method |        Mean |     Error |      StdDev |      Median | Rank |
+|--------------------- |------------:|----------:|------------:|------------:|-----:|
+|      LatinOnlyString |    249.4 ns |  11.64 ns |    34.32 ns |    252.7 ns |    1 |
+| ShortDiacriticString |    427.2 ns |  13.80 ns |    37.54 ns |    416.9 ns |    2 |
+|  LongDiacriticString | 15,569.4 ns | 639.10 ns | 1,874.38 ns | 14,859.1 ns |    3 |

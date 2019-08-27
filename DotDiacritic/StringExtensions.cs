@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Text;
 
 namespace DotDiacritic
 {
@@ -8,12 +9,13 @@ namespace DotDiacritic
 		{
 			if (string.IsNullOrEmpty(source))
 				return source;
-			
+
+			IReadOnlyDictionary<char, string> map = DiacriticMap.Map.Value;
 			var result = new StringBuilder(source.Length);
 
 			foreach (char character in source)
 			{
-				if (DiacriticMap.Map.Value.TryGetValue(character, out string replacement))
+				if (map.TryGetValue(character, out string replacement))
 				{
 					result.Append(replacement);
 				}
