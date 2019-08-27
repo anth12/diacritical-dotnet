@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>DotDiacritic.Benchmark.DiacriticMapBenchmark-20190827-083627</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.11.5, OS=Windows 10.0.14393.2906 (1607/AnniversaryUpdate/Redstone1)
+Intel Xeon CPU E3-1505M v5 2.80GHz, 1 CPU, 8 logical and 4 physical cores
+Frequency=2742187 Hz, Resolution=364.6724 ns, Timer=TSC
+.NET Core SDK=2.2.401
+  [Host]     : .NET Core 2.2.6 (CoreCLR 4.6.27817.03, CoreFX 4.6.27818.02), 64bit RyuJIT
+  DefaultJob : .NET Core 2.2.6 (CoreCLR 4.6.27817.03, CoreFX 4.6.27818.02), 64bit RyuJIT
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>        Method</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th>Rank</th>
+</tr>
+</thead><tbody><tr><td>LatinOnlyString</td><td>218.0 ns</td><td>5.130 ns</td><td>14.55 ns</td><td>212.4 ns</td><td>1</td>
+</tr><tr><td>ShortDiacriticString</td><td>501.4 ns</td><td>9.930 ns</td><td>28.33 ns</td><td>494.7 ns</td><td>2</td>
+</tr><tr><td>LongDiacriticString</td><td>613.3 ns</td><td>36.738 ns</td><td>108.32 ns</td><td>576.4 ns</td><td>3</td>
+</tr></tbody></table>
+</body>
+</html>
