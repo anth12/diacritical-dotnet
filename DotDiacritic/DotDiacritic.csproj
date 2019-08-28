@@ -8,6 +8,7 @@
     <PackageProjectUrl>https://github.com/anth12/dot-diacritic</PackageProjectUrl>
     <Description>Replace Diacritic characters with ASCII equivalents.</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageIconUrl>https://raw.githubusercontent.com/anth12/diacritical-dotnet/master/assets/diacritical.png</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>
