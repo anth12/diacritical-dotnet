@@ -1,4 +1,4 @@
-﻿# DotDiacritic
+﻿# Diacritical.Net
 
 .net Standard library to replace Diacritic characters with ASCII equivalents.
 
@@ -13,11 +13,13 @@ Install the ([nuget][nuget]):
 
 Usage
 
-	"Buen día".RemoveDiacritics();      // Buen dia
-    "Witaj świecie".RemoveDiacritics(); // Witaj swiecie
+```c#
+"Buen día".RemoveDiacritics();      // Buen dia
+"Witaj świecie".RemoveDiacritics(); // Witaj swiecie
 
-    "Olá Mundo".HasDiacritics();   // true
-    "Hello World".HasDiacritics(); // false
+"Olá Mundo".HasDiacritics();   // true
+"Hello World".HasDiacritics(); // false
+```
 
 Sample mappings
 - Á,Ă,Ắ,Ặ,Ằ,Ẳ,Ẵ,Ǎ,Â... -> **A**
@@ -32,8 +34,9 @@ A full list of supported mappings can be found [here][default provider].
 
 Custom mappings can easily be added with a custom `IDiacriticProvider` implementation and registered with:
 
-    DiacriticMap.AddProvider(new MyCustomDiacriticProvider());
-
+```c#
+DiacriticMap.AddProvider(new MyCustomDiacriticProvider());
+```
 
 ## Credits
 - Logo eraser icon by Terrence Kevin Oleary (noun project)
