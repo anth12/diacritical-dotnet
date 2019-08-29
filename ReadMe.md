@@ -4,6 +4,8 @@
 
 <img src="https://raw.githubusercontent.com/anth12/diacritical-dotnet/master/assets/diacritical.png" alt="Diacritical logo" width="256px" align="right">
 
+[![Build Status](https://anthonyhalliday.visualstudio.com/Diacritical/_apis/build/status/anth12.diacritical-dotnet?branchName=master)](https://anthonyhalliday.visualstudio.com/Diacritical/_build/latest?definitionId=1&branchName=master)
+
 ## Getting Started
 
 Install the ([nuget][nuget]):

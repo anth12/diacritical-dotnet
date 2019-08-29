@@ -13,6 +13,8 @@
 		<Product>Diacritical</Product>
     <PackageTags>diacritic;string-formatting;accent</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Version>1.0.1</Version>
+    <PackageIconUrl>https://raw.githubusercontent.com/anth12/diacritical-dotnet/master/assets/diacritical.png</PackageIconUrl>
   </PropertyGroup>
 
 </Project>

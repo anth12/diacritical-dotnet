@@ -38,7 +38,8 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: '**/Diacritical.csproj'
-    versioningScheme: 'byBuildNumber'
+    versioningScheme: 'off'
+
 - task: NuGetCommand@2
   inputs:
     command: 'push'
