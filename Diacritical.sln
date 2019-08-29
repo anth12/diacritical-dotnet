@@ -7,14 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diacritical", "Diacritical\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diacritical.Benchmark", "Diacritical.Benchmark\Diacritical.Benchmark.csproj", "{8FAF1EC8-A10E-46DF-8672-167009CA0333}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diacritical.Test", "Diacritical.Test\Diacritical.Test.csproj", "{86FC4DDF-EEB5-41B8-84B9-BCF681DFC299}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diacritical.Test", "Diacritical.Test\Diacritical.Test.csproj", "{86FC4DDF-EEB5-41B8-84B9-BCF681DFC299}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{AA7A8E94-8C4A-4F6A-B5C5-E5CE3362C3F8}"
 	ProjectSection(SolutionItems) = preProject
+		azure-pipelines.yml = azure-pipelines.yml
 		ReadMe.md = ReadMe.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diacritical.Import", "Diacritical.Import\Diacritical.Import.csproj", "{E7A4532B-4339-47CD-8ECE-EB16B9620E5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diacritical.Import", "Diacritical.Import\Diacritical.Import.csproj", "{E7A4532B-4339-47CD-8ECE-EB16B9620E5D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

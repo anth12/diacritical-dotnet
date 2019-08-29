@@ -44,7 +44,7 @@ namespace Diacritical
 
 		#endregion
 
-		#region Map
+		#region Index
 
 		internal static Lazy<DiacriticIndex> Index;
 

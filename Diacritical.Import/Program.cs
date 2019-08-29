@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -16,10 +17,13 @@ namespace Diacritical.Import
 			{
 				var json = await client.GetStringAsync(Endpoint);
 				var diacriticsMap = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, CultureVariation>>>(json);
-				var b = diacriticsMap.Values.SelectMany(x => x.Values.SelectMany(z => z.Variations.Values))
-					.SelectMany(x => x.Equivalents.Select(a => (a.Raw, x.Mapping.Base)))
+				var mappings = diacriticsMap.Values.SelectMany(x => x.Values.SelectMany(z => z.Variations.Values))
+					.SelectMany(x => x.Equivalents.Select(a => (a.Raw, Base: x.Mapping.Base ?? x.Mapping.Decompose?.Value)))
+					.Where(x=> !string.IsNullOrEmpty(x.Base))
+					.OrderBy(x=> x.Raw)
 					.ToArray();
 
+				File.WriteAllLines("mappings.txt", mappings.Select(x=> $"{{ '{x.Raw}', \"{x.Base}\" }},"));
 			}
 		}
 
@@ -46,18 +50,26 @@ namespace Diacritical.Import
 			public IList<string> Country { get; set; }
 		}
 
+		public class Decompose
+		{
+			[JsonProperty("value")]
+			public string Value { get; set; }
+		}
+
 		public class Mapping
 		{
 
 			[JsonProperty("base")]
 			public string Base { get; set; }
+
+			[JsonProperty("decompose")]
+			public Decompose Decompose { get; set; }
 		}
 
 		public class Equivalent
 		{
-
 			[JsonProperty("raw")]
-			public string Raw { get; set; }
+			public char Raw { get; set; }
 
 			[JsonProperty("unicode")]
 			public string Unicode { get; set; }
