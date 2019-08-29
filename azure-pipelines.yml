@@ -37,6 +37,6 @@ steps:
 - task: NuGetCommand@2
   inputs:
     command: 'push'
-    packagesToPush: 'bin/Release/**/*.nupkg;'
+    packagesToPush: '**/*.nupkg;'
     nuGetFeedType: 'external'
     publishFeedCredentials: 'Diacritical nuget'
