@@ -11,7 +11,7 @@ namespace Diacritical
 
 			DiacriticIndex index = DiacriticMap.Index.Value;
 			var result = new StringBuilder(source.Length);
-
+			
 			foreach (char character in source)
 			{
 				if (index.Map.TryGetValue(character, out string replacement))
@@ -33,8 +33,17 @@ namespace Diacritical
 				return false;
 
 			DiacriticIndex index = DiacriticMap.Index.Value;
+			var result = new StringBuilder(source.Length);
 
-			return source.IndexOfAny(index.Keys) > -1;
+			foreach (char character in source)
+			{
+				if (index.Map.TryGetValue(character, out string replacement))
+				{
+					return true;
+				}
+			}
+
+			return false;
 		}
 	}
 }

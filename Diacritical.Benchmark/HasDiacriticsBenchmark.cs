@@ -3,7 +3,9 @@ using BenchmarkDotNet.Exporters.Csv;
 
 namespace Diacritical.Benchmark
 {
-	[RankColumn, CsvExporter(CsvSeparator.Comma)]
+	[ShortRunJob]
+	[CsvExporter(CsvSeparator.Comma)]
+	[RankColumn]
 	public class HasDiacriticsBenchmark
 	{
 
@@ -17,7 +19,10 @@ namespace Diacritical.Benchmark
 		#region Diacritical
 
 		[Benchmark]
-		public bool Diacritical_LatinOnlyString() => Diacritical.StringExtensions.HasDiacritics(Constants.LatinString);
+		public bool Diacritical_ShortLatinString() => Diacritical.StringExtensions.HasDiacritics(Constants.ShortLatinString);
+
+		[Benchmark]
+		public bool Diacritical_LongLatinString() => Diacritical.StringExtensions.HasDiacritics(Constants.LongLatinString);
 
 		[Benchmark]
 		public bool Diacritical_ShortDiacriticString() => Diacritical.StringExtensions.HasDiacritics(Constants.ShortDiacriticString);
@@ -30,7 +35,10 @@ namespace Diacritical.Benchmark
 		#region
 
 		[Benchmark]
-		public bool Diacritics_LatinOnlyString() => Diacritics.Extensions.StringExtensions.HasDiacritics(Constants.LatinString);
+		public bool Diacritics_ShortLatinString() => Diacritics.Extensions.StringExtensions.HasDiacritics(Constants.ShortLatinString);
+
+		[Benchmark]
+		public bool Diacritics_LongLatinString() => Diacritics.Extensions.StringExtensions.HasDiacritics(Constants.LongLatinString);
 
 		[Benchmark]
 		public bool Diacritics_ShortDiacriticString() => Diacritics.Extensions.StringExtensions.HasDiacritics(Constants.ShortDiacriticString);

@@ -64,7 +64,7 @@ namespace Diacritical
 					}
 				}
 
-				return new DiacriticIndex(mappings, mappings.Keys.ToArray());
+				return new DiacriticIndex(mappings);
 			}, LazyThreadSafetyMode.PublicationOnly);
 		}
 

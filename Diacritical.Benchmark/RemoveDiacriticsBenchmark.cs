@@ -19,7 +19,10 @@ namespace Diacritical.Benchmark
 		#region Diacritical
 
 		[Benchmark]
-		public string Diacritical_LatinOnlyString() => Diacritical.StringExtensions.RemoveDiacritics(Constants.LatinString);
+		public string Diacritical_ShortLatinString() => Diacritical.StringExtensions.RemoveDiacritics(Constants.ShortLatinString);
+		
+		[Benchmark]
+		public string Diacritical_LongLatinString() => Diacritical.StringExtensions.RemoveDiacritics(Constants.LongLatinString);
 
 		[Benchmark]
 		public string Diacritical_ShortDiacriticString() => Diacritical.StringExtensions.RemoveDiacritics(Constants.ShortDiacriticString);
@@ -32,7 +35,10 @@ namespace Diacritical.Benchmark
 		#region
 
 		[Benchmark]
-		public string Diacritics_LatinOnlyString() => Diacritics.Extensions.StringExtensions.RemoveDiacritics(Constants.LatinString);
+		public string Diacritics_ShortLatinOnlyString() => Diacritics.Extensions.StringExtensions.RemoveDiacritics(Constants.ShortLatinString);
+
+		[Benchmark]
+		public string Diacritics_LongLatinOnlyString() => Diacritics.Extensions.StringExtensions.RemoveDiacritics(Constants.LongLatinString);
 
 		[Benchmark]
 		public string Diacritics_ShortDiacriticString() => Diacritics.Extensions.StringExtensions.RemoveDiacritics(Constants.ShortDiacriticString);

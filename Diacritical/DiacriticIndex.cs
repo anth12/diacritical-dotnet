@@ -4,13 +4,11 @@ namespace Diacritical
 {
 	internal class DiacriticIndex
 	{
-		public DiacriticIndex(IReadOnlyDictionary<char, string> map, char[] keys)
+		public DiacriticIndex(IReadOnlyDictionary<char, string> map)
 		{
 			Map = map;
-			Keys = keys;
 		}
 
 		public IReadOnlyDictionary<char, string> Map { get; }
-		public char[] Keys { get; }
 	}
 }

@@ -11,11 +11,13 @@ Job=ShortRun  IterationCount=3  LaunchCount=1
 WarmupCount=3  
 
 ```
-|                           Method |        Mean |        Error |     StdDev | Rank |
-|--------------------------------- |------------:|-------------:|-----------:|-----:|
-|      Diacritical_LatinOnlyString |    200.2 ns |     75.39 ns |   4.132 ns |    1 |
-| Diacritical_ShortDiacriticString |    420.2 ns |    433.37 ns |  23.754 ns |    2 |
-|  Diacritical_LongDiacriticString | 14,309.4 ns |  3,800.80 ns | 208.335 ns |    5 |
-|       Diacritics_LatinOnlyString |    878.0 ns |    404.79 ns |  22.188 ns |    3 |
-|  Diacritics_ShortDiacriticString |  3,717.4 ns |  1,233.59 ns |  67.617 ns |    4 |
-|   Diacritics_LongDiacriticString | 79,569.4 ns | 12,520.32 ns | 686.281 ns |    6 |
+|                           Method |        Mean |       Error |       StdDev | Rank |
+|--------------------------------- |------------:|------------:|-------------:|-----:|
+|     Diacritical_ShortLatinString |    237.5 ns |    193.0 ns |    10.578 ns |    1 |
+|      Diacritical_LongLatinString |  7,902.8 ns |  3,905.6 ns |   214.080 ns |    5 |
+| Diacritical_ShortDiacriticString |    424.6 ns |    181.0 ns |     9.920 ns |    2 |
+|  Diacritical_LongDiacriticString | 14,354.8 ns |  3,277.9 ns |   179.672 ns |    7 |
+|  Diacritics_ShortLatinOnlyString |    903.8 ns |    407.2 ns |    22.323 ns |    3 |
+|   Diacritics_LongLatinOnlyString | 10,418.1 ns |  6,565.6 ns |   359.882 ns |    6 |
+|  Diacritics_ShortDiacriticString |  3,880.6 ns |  1,149.3 ns |    62.996 ns |    4 |
+|   Diacritics_LongDiacriticString | 83,636.7 ns | 55,190.8 ns | 3,025.192 ns |    8 |

@@ -19,7 +19,7 @@ namespace Diacritical.Import
 				var diacriticsMap = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, CultureVariation>>>(json);
 				var mappings = diacriticsMap.Values.SelectMany(x => x.Values.SelectMany(z => z.Variations.Values))
 					.SelectMany(x => x.Equivalents.Select(a => (a.Raw, Base: x.Mapping.Base ?? x.Mapping.Decompose?.Value)))
-					.Where(x=> !string.IsNullOrEmpty(x.Base))
+					.Where(x=> !string.IsNullOrEmpty(x.Base) && char.TryParse(x.Raw, out _))
 					.OrderBy(x=> x.Raw)
 					.ToArray();
 
@@ -69,7 +69,7 @@ namespace Diacritical.Import
 		public class Equivalent
 		{
 			[JsonProperty("raw")]
-			public char Raw { get; set; }
+			public string Raw { get; set; }
 
 			[JsonProperty("unicode")]
 			public string Unicode { get; set; }
