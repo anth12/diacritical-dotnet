@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
-namespace DotDiacritic
+namespace Diacritical
 {
 	public class DiacriticMap
 	{
@@ -26,7 +26,7 @@ namespace DotDiacritic
 				throw new Exception("Provider already added");
 
 			Providers.Add(provider);
-			ResetMap();
+			BuildIndex();
 		}
 
 		public static void AddProviders(IEnumerable<IDiacriticProvider> providers)
@@ -39,20 +39,20 @@ namespace DotDiacritic
 				Providers.Add(provider);
 			}
 
-			ResetMap();
+			BuildIndex();
 		}
 
 		#endregion
 
 		#region Map
 
-		internal static Lazy<IReadOnlyDictionary<char, string>> Map;
+		internal static Lazy<DiacriticIndex> Index;
 
-		private static void ResetMap()
+		private static void BuildIndex()
 		{
-			Map = new Lazy<IReadOnlyDictionary<char, string>>(()=>
+			Index = new Lazy<DiacriticIndex>(()=>
 			{
-				var result = new ConcurrentDictionary<char, string>();
+				var mappings = new ConcurrentDictionary<char, string>();
 
 				foreach (var diacriticProvider in Providers)
 				{
@@ -60,11 +60,11 @@ namespace DotDiacritic
 
 					foreach (KeyValuePair<char, string> mapping in map)
 					{
-						result.TryAdd(mapping.Key, mapping.Value);
+						mappings.TryAdd(mapping.Key, mapping.Value);
 					}
 				}
 
-				return result;
+				return new DiacriticIndex(mappings, mappings.Keys.ToArray());
 			}, LazyThreadSafetyMode.PublicationOnly);
 		}
 

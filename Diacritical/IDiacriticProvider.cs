@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DotDiacritic
+namespace Diacritical
 {
 	public interface IDiacriticProvider
 	{

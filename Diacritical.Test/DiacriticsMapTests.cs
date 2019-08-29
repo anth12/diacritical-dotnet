@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using DotDiacritic.Test.Mock;
+using Diacritical.Test.Mock;
 using NUnit.Framework;
 
-namespace DotDiacritic.Test
+namespace Diacritical.Test
 {
 	public class DiacriticsMapTests
 	{

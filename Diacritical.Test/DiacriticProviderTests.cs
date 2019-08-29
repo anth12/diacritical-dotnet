@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using NUnit.Framework;
 
-namespace DotDiacritic.Test
+namespace Diacritical.Test
 {
 	public class DiacriticProviderTests
 	{

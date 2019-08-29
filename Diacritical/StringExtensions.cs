@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
-namespace DotDiacritic
+namespace Diacritical
 {
 	public static class StringExtensions
 	{
@@ -10,12 +11,12 @@ namespace DotDiacritic
 			if (string.IsNullOrEmpty(source))
 				return source;
 
-			IReadOnlyDictionary<char, string> map = DiacriticMap.Map.Value;
+			DiacriticIndex index = DiacriticMap.Index.Value;
 			var result = new StringBuilder(source.Length);
 
 			foreach (char character in source)
 			{
-				if (map.TryGetValue(character, out string replacement))
+				if (index.Map.TryGetValue(character, out string replacement))
 				{
 					result.Append(replacement);
 				}
@@ -26,6 +27,16 @@ namespace DotDiacritic
 			}
 
 			return result.ToString();
+		}
+
+		public static bool HasDiacritics(this string source)
+		{
+			if (string.IsNullOrEmpty(source))
+				return false;
+
+			DiacriticIndex index = DiacriticMap.Index.Value;
+
+			return source.IndexOfAny(index.Keys) > -1;
 		}
 	}
 }

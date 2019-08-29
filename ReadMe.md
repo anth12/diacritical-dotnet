@@ -1,12 +1,14 @@
-﻿# DotDiacritic
+﻿# Diacritical dotnet
 
 Replace Diacritic characters with ASCII equivalents.
 
 ## Getting Started
 
-Install the [nuget](https://www.nuget.org/packages/DotDiacritic/):
-    PM> Install-Package DotDiacritic
-	> dotnet add package DotDiacritic
+Install the [nuget](https://www.nuget.org/packages/Diacritical.Net/):
+
+    PM> Install-Package Diacritical.Net
+
+	> dotnet add package Diacritical.Net
 
 
 	"Buen día".RemoveDiacritics(); // Buen dia

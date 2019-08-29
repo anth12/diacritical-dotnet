@@ -7,10 +7,11 @@
 
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.11.5" />
+    <PackageReference Include="Diacritics" Version="2.0.18316.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DotDiacritic\DotDiacritic.csproj" />
+    <ProjectReference Include="..\Diacritical\Diacritical.csproj" />
   </ItemGroup>
 
 </Project>

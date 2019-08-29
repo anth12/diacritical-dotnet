@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DotDiacritic.Test.Mock
+namespace Diacritical.Test.Mock
 {
 	internal class CustomDiacriticProvider : IDiacriticProvider
 	{
