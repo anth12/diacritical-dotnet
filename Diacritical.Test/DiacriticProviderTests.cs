@@ -23,7 +23,7 @@ namespace Diacritical.Test
 			var subject = "ₓ";
 
 			var result = subject.RemoveDiacritics();
-			Assert.AreEqual(x_lower.ToLower(), result);
+			Assert.AreEqual(x_lower, result);
 
 			DiacriticMap.AddProvider(new CustomDiacriticProvider(new Dictionary<char, string>
 			{
@@ -31,7 +31,7 @@ namespace Diacritical.Test
 			}));
 
 			result = subject.RemoveDiacritics();
-			Assert.AreEqual(x_upper.ToUpper(), result);
+			Assert.AreEqual(x_upper, result);
 		}
 
 	}

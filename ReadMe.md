@@ -36,7 +36,7 @@ Sample mappings
 
 A full list of supported mappings can be found [here][default provider].
 
-Custom mappings can easily be added with a custom `IDiacriticProvider` implementation and registered with:
+Custom mappings can easily be added with a custom `IDiacriticProvider` implementation and registered using:
 
 ```c#
 DiacriticMap.AddProvider(new MyCustomDiacriticProvider());

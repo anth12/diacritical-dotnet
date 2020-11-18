@@ -33,6 +33,7 @@ steps:
 
 - task: VSTest@2
   displayName: 'Unit tests'
+  continueOnError: false
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'

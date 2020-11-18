@@ -9,20 +9,21 @@ namespace Diacritical
 			if (string.IsNullOrEmpty(source))
 				return source;
 
-			DiacriticIndex index = DiacriticMap.Index.Value;
+			DiacriticIndex index = DiacriticMap.Index;
 			var result = new StringBuilder(source.Length);
-			
-			foreach (char character in source)
-			{
-				if (index.Map.TryGetValue(character, out string replacement))
-				{
-					result.Append(replacement);
-				}
-				else
-				{
-					result.Append(character);
-				}
-			}
+
+            string replacement;
+			foreach (var character in source)
+            {
+                if (index.Map.TryGetValue(character, out replacement))
+                {
+                    result.Append(replacement);
+                }
+                else
+                {
+                    result.Append(character);
+                }
+            }
 
 			return result.ToString();
 		}
@@ -32,12 +33,11 @@ namespace Diacritical
 			if (string.IsNullOrEmpty(source))
 				return false;
 
-			DiacriticIndex index = DiacriticMap.Index.Value;
-			var result = new StringBuilder(source.Length);
+			DiacriticIndex index = DiacriticMap.Index;
 
 			foreach (char character in source)
 			{
-				if (index.Map.TryGetValue(character, out string replacement))
+				if (index.Map.ContainsKey(character))
 				{
 					return true;
 				}
