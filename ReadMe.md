@@ -50,4 +50,4 @@ DiacriticMap.AddProvider(new MyCustomDiacriticProvider());
 
 [nuget]: https://www.nuget.org/packages/Diacritical.Net/
 [diacritics database]: https://github.com/diacritics/database
-[default provider]: https://github.com/anth12/diacritical-dotnet/blob/master/DotDiacritic/DefaultDiacriticProvider.cs
+[default provider]: https://github.com/anth12/diacritical-dotnet/blob/master/Diacritical/DefaultDiacriticProvider.cs
