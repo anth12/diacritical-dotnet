@@ -4,18 +4,17 @@ namespace Diacritical
 {
 	public static class StringExtensions
 	{
-		public static string RemoveDiacritics(this string source)
-		{
-			if (string.IsNullOrEmpty(source))
-				return source;
+        public static string RemoveDiacritics(this string source)
+        {
+            if (string.IsNullOrEmpty(source))
+                return source;
 
-			DiacriticIndex index = DiacriticMap.Index;
-			var result = new StringBuilder(source.Length);
+            DiacriticIndex index = DiacriticMap.Index;
+            var result = StringBuilderCache.Acquire(source.Length);
 
-            string replacement;
-			foreach (var character in source)
+            foreach (var character in source)
             {
-                if (index.Map.TryGetValue(character, out replacement))
+                if (index.Map.TryGetValue(character, out var replacement))
                 {
                     result.Append(replacement);
                 }
@@ -25,8 +24,8 @@ namespace Diacritical
                 }
             }
 
-			return result.ToString();
-		}
+            return StringBuilderCache.GetStringAndRelease(result);
+        }
 
 		public static bool HasDiacritics(this string source)
 		{
@@ -35,7 +34,7 @@ namespace Diacritical
 
 			DiacriticIndex index = DiacriticMap.Index;
 
-			foreach (char character in source)
+			foreach (var character in source)
 			{
 				if (index.Map.ContainsKey(character))
 				{

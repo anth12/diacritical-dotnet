@@ -6,6 +6,7 @@ namespace Diacritical.Benchmark
 	[ShortRunJob]
 	[CsvExporter(CsvSeparator.Comma)]
 	[RankColumn]
+    [MemoryDiagnoser]
 	public class RemoveDiacriticsBenchmark
 	{
 
