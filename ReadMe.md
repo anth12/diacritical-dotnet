@@ -1,11 +1,12 @@
 ## Diacritical.Net
 
-.net Standard library to replace Diacritic characters with ASCII equivalents.
+.NET Standard library to replace Diacritic characters with ASCII equivalents.
 
-<img src="https://raw.githubusercontent.com/anth12/diacritical-dotnet/master/assets/diacritical.png" alt="Diacritical logo" width="256px" align="right">
+![Diacritical logo](https://raw.githubusercontent.com/anth12/diacritical-dotnet/master/assets/diacritical-small.png)
 
-[![Build Status](https://anthonyhalliday.visualstudio.com/Diacritical/_apis/build/status/anth12.diacritical-dotnet?branchName=master)](https://anthonyhalliday.visualstudio.com/Diacritical/_build/latest?definitionId=1&branchName=master)
+[![Build Status](https://img.shields.io/azure-devops/build/anthonyhalliday/Diacritical/1)](https://anthonyhalliday.visualstudio.com/Diacritical/_build/latest?definitionId=1&branchName=master)
 [![Nuget](https://img.shields.io/nuget/v/Diacritical.Net)](https://www.nuget.org/packages/Diacritical.Net)
+[![Downloads](https://img.shields.io/nuget/dt/Diacritical.Net)](https://www.nuget.org/packages/Diacritics)
 
 
 ## Getting Started
