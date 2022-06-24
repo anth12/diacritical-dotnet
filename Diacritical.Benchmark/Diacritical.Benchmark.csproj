@@ -2,12 +2,12 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.11.5" />
-    <PackageReference Include="Diacritics" Version="2.0.18316.1" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.13.1" />
+    <PackageReference Include="Diacritics" Version="3.3.14" />
   </ItemGroup>
 
   <ItemGroup>

@@ -2,7 +2,6 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 
 namespace Diacritical
 {
@@ -18,14 +17,14 @@ namespace Diacritical
 
 		#region Providers
 
-		internal static readonly ConcurrentBag<IDiacriticProvider> Providers = new ConcurrentBag<IDiacriticProvider>();
+		private static readonly ConcurrentQueue<IDiacriticProvider> Providers = new ConcurrentQueue<IDiacriticProvider>();
 
 		public static void AddProvider(IDiacriticProvider provider)
 		{
 			if (Providers.Contains(provider))
 				throw new Exception("Provider already added");
 
-			Providers.Add(provider);
+			Providers.Enqueue(provider);
 			BuildIndex();
 		}
 
@@ -36,7 +35,7 @@ namespace Diacritical
 				if (Providers.Contains(provider))
 					throw new Exception("Provider already added");
 
-				Providers.Add(provider);
+				Providers.Enqueue(provider);
 			}
 
 			BuildIndex();
@@ -46,27 +45,24 @@ namespace Diacritical
 
 		#region Index
 
-		internal static Lazy<DiacriticIndex> Index;
+		internal static DiacriticIndex Index;
 
 		private static void BuildIndex()
 		{
-			Index = new Lazy<DiacriticIndex>(()=>
+			var mappings = new Dictionary<char, string>();
+			
+			foreach (var diacriticProvider in Providers)
 			{
-				var mappings = new ConcurrentDictionary<char, string>();
+				IDictionary<char, string> map = diacriticProvider.Provide();
 
-				foreach (var diacriticProvider in Providers)
+				foreach (KeyValuePair<char, string> mapping in map)
 				{
-					IDictionary<char, string> map = diacriticProvider.Provide();
-
-					foreach (KeyValuePair<char, string> mapping in map)
-					{
-						mappings.TryAdd(mapping.Key, mapping.Value);
-					}
+					mappings[mapping.Key] = mapping.Value;
 				}
+			}
 
-				return new DiacriticIndex(mappings);
-			}, LazyThreadSafetyMode.PublicationOnly);
-		}
+            Index = new DiacriticIndex(mappings);
+        }
 
 		#endregion
 

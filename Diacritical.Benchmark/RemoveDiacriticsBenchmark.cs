@@ -6,6 +6,7 @@ namespace Diacritical.Benchmark
 	[ShortRunJob]
 	[CsvExporter(CsvSeparator.Comma)]
 	[RankColumn]
+    [MemoryDiagnoser]
 	public class RemoveDiacriticsBenchmark
 	{
 
@@ -32,7 +33,7 @@ namespace Diacritical.Benchmark
 
 		#endregion
 
-		#region
+		#region Diacritics
 
 		[Benchmark]
 		public string Diacritics_ShortLatinOnlyString() => Diacritics.Extensions.StringExtensions.RemoveDiacritics(Constants.ShortLatinString);

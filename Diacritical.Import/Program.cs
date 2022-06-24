@@ -2,111 +2,110 @@
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using System.Text.Json;
 
 namespace Diacritical.Import
 {
-	class Program
-	{
-		private const string Endpoint = "https://raw.githubusercontent.com/diacritics/database/dist/v1/diacritics.json";
+    class Program
+    {
+        private const string Endpoint = "https://raw.githubusercontent.com/diacritics/database/dist/v1/diacritics.json";
 
-		static async Task Main(string[] args)
-		{
-			using (var client = new HttpClient())
-			{
-				var json = await client.GetStringAsync(Endpoint);
-				var diacriticsMap = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, CultureVariation>>>(json);
-				var mappings = diacriticsMap.Values.SelectMany(x => x.Values.SelectMany(z => z.Variations.Values))
-					.SelectMany(x => x.Equivalents.Select(a => (a.Raw, Base: x.Mapping.Base ?? x.Mapping.Decompose?.Value)))
-					.Where(x=> !string.IsNullOrEmpty(x.Base) && char.TryParse(x.Raw, out _))
-					.OrderBy(x=> x.Raw)
-					.ToArray();
+        static async Task Main()
+        {
+            using var client = new HttpClient();
+            var json = await client.GetStringAsync(Endpoint);
+            var diacriticsMap = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, CultureVariation>>>(json) ?? new();
+            var mappings = diacriticsMap.Values.SelectMany(x => x.Values.SelectMany(z => z.Variations.Values))
+                .SelectMany(x => x.Equivalents.Select(a => (a.Raw, Base: x.Mapping.Base ?? x.Mapping.Decompose?.Value)))
+                .Where(x => !string.IsNullOrEmpty(x.Base) && char.TryParse(x.Raw, out _))
+                .OrderBy(x => x.Raw)
+                .ToArray();
 
-				File.WriteAllLines("mappings.txt", mappings.Select(x=> $"{{ '{x.Raw}', \"{x.Base}\" }},"));
-			}
-		}
+            await File.WriteAllLinesAsync("mappings.txt", mappings.Select(x => $"{{ '{x.Raw}', \"{x.Base}\" }},"));
+        }
 
-		#region Models
+        #region Models
 
-		public class Metadata
-		{
-			[JsonProperty("alphabet")]
-			public string Alphabet { get; set; }
+        public class Metadata
+        {
+            [JsonPropertyName("alphabet")]
+            public string Alphabet { get; set; }
 
-			[JsonProperty("continent")]
-			public IList<string> Continent { get; set; }
+            [JsonPropertyName("continent")]
+            public IList<string> Continent { get; set; }
 
-			[JsonProperty("language")]
-			public string Language { get; set; }
+            [JsonPropertyName("language")]
+            public string Language { get; set; }
 
-			[JsonProperty("languageNative")]
-			public string LanguageNative { get; set; }
+            [JsonPropertyName("languageNative")]
+            public string LanguageNative { get; set; }
 
-			[JsonProperty("source")]
-			public IList<string> Source { get; set; }
+            [JsonPropertyName("source")]
+            public IList<string> Source { get; set; }
 
-			[JsonProperty("country")]
-			public IList<string> Country { get; set; }
-		}
+            [JsonPropertyName("country")]
+            public IList<string> Country { get; set; }
+        }
 
-		public class Decompose
-		{
-			[JsonProperty("value")]
-			public string Value { get; set; }
-		}
+        public class Decompose
+        {
+            [JsonPropertyName("value")]
+            public string Value { get; set; }
+        }
 
-		public class Mapping
-		{
+        public class Mapping
+        {
 
-			[JsonProperty("base")]
-			public string Base { get; set; }
+            [JsonPropertyName("base")]
+            public string Base { get; set; }
 
-			[JsonProperty("decompose")]
-			public Decompose Decompose { get; set; }
-		}
+            [JsonPropertyName("decompose")]
+            public Decompose Decompose { get; set; }
+        }
 
-		public class Equivalent
-		{
-			[JsonProperty("raw")]
-			public string Raw { get; set; }
+        public class Equivalent
+        {
+            [JsonPropertyName("raw")]
+            public string Raw { get; set; }
 
-			[JsonProperty("unicode")]
-			public string Unicode { get; set; }
+            [JsonPropertyName("unicode")]
+            public string Unicode { get; set; }
 
-			[JsonProperty("htmlDecimal")]
-			public string HtmlDecimal { get; set; }
+            [JsonPropertyName("htmlDecimal")]
+            public string HtmlDecimal { get; set; }
 
-			[JsonProperty("htmlHex")]
-			public string HtmlHex { get; set; }
+            [JsonPropertyName("htmlHex")]
+            public string HtmlHex { get; set; }
 
-			[JsonProperty("encodedUri")]
-			public string EncodedUri { get; set; }
-		}
+            [JsonPropertyName("encodedUri")]
+            public string EncodedUri { get; set; }
+        }
 
-		public class Variation
-		{
+        public class Variation
+        {
 
-			[JsonProperty("case")]
-			public string Case { get; set; }
+            [JsonPropertyName("case")]
+            public string Case { get; set; }
 
-			[JsonProperty("mapping")]
-			public Mapping Mapping { get; set; }
+            [JsonPropertyName("mapping")]
+            public Mapping Mapping { get; set; }
 
-			[JsonProperty("equivalents")]
-			public IList<Equivalent> Equivalents { get; set; }
-		}
+            [JsonPropertyName("equivalents")]
+            public IList<Equivalent> Equivalents { get; set; }
+        }
 
-		public class CultureVariation
-		{
-			[JsonProperty("metadata")]
-			public Metadata Metadata { get; set; }
+        public class CultureVariation
+        {
+            [JsonPropertyName("metadata")]
+            public Metadata Metadata { get; set; }
 
-			[JsonProperty("data")]
-			public Dictionary<string, Variation> Variations { get; set; }
-		}
-		
-		#endregion
+            [JsonPropertyName("data")]
+            public Dictionary<string, Variation> Variations { get; set; }
+        }
 
-	}
+        #endregion
+
+    }
 }
