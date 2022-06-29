@@ -6,7 +6,7 @@
 
 [![Build Status](https://img.shields.io/azure-devops/build/anthonyhalliday/Diacritical/1)](https://anthonyhalliday.visualstudio.com/Diacritical/_build/latest?definitionId=1&branchName=master)
 [![Nuget](https://img.shields.io/nuget/v/Diacritical.Net)](https://www.nuget.org/packages/Diacritical.Net)
-[![Downloads](https://img.shields.io/nuget/dt/Diacritical.Net)](https://www.nuget.org/packages/Diacritics)
+[![Downloads](https://img.shields.io/nuget/dt/Diacritical.Net)](https://www.nuget.org/packages/Diacritical.Net)
 
 
 ## Getting Started
