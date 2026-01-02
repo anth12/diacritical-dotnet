@@ -20,10 +20,10 @@ namespace Diacritical.Benchmark
 		#region Diacritical
 
 		[Benchmark]
-		public string Diacritical_ShortLatinString() => Diacritical.StringExtensions.RemoveDiacritics(Constants.ShortLatinString);
+		public string Diacritical_ShortLatinOnlyString() => Diacritical.StringExtensions.RemoveDiacritics(Constants.ShortLatinString);
 		
 		[Benchmark]
-		public string Diacritical_LongLatinString() => Diacritical.StringExtensions.RemoveDiacritics(Constants.LongLatinString);
+		public string Diacritical_LongLatinOnlyString() => Diacritical.StringExtensions.RemoveDiacritics(Constants.LongLatinString);
 
 		[Benchmark]
 		public string Diacritical_ShortDiacriticString() => Diacritical.StringExtensions.RemoveDiacritics(Constants.ShortDiacriticString);

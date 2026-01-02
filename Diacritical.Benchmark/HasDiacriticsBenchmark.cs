@@ -19,10 +19,10 @@ public class HasDiacriticsBenchmark
 	#region Diacritical
 
 	[Benchmark]
-	public bool Diacritical_ShortLatinString() => Diacritical.StringExtensions.HasDiacritics(Constants.ShortLatinString);
+	public bool Diacritical_ShortLatinOnlyString() => Diacritical.StringExtensions.HasDiacritics(Constants.ShortLatinString);
 
 	[Benchmark]
-	public bool Diacritical_LongLatinString() => Diacritical.StringExtensions.HasDiacritics(Constants.LongLatinString);
+	public bool Diacritical_LongLatinOnlyString() => Diacritical.StringExtensions.HasDiacritics(Constants.LongLatinString);
 
 	[Benchmark]
 	public bool Diacritical_ShortDiacriticString() => Diacritical.StringExtensions.HasDiacritics(Constants.ShortDiacriticString);
@@ -35,10 +35,10 @@ public class HasDiacriticsBenchmark
 	#region
 
 	[Benchmark]
-	public bool Diacritics_ShortLatinString() => Diacritics.Extensions.StringExtensions.HasDiacritics(Constants.ShortLatinString);
+	public bool Diacritics_ShortLatinOnlyString() => Diacritics.Extensions.StringExtensions.HasDiacritics(Constants.ShortLatinString);
 
 	[Benchmark]
-	public bool Diacritics_LongLatinString() => Diacritics.Extensions.StringExtensions.HasDiacritics(Constants.LongLatinString);
+	public bool Diacritics_LongLatinOnlyString() => Diacritics.Extensions.StringExtensions.HasDiacritics(Constants.LongLatinString);
 
 	[Benchmark]
 	public bool Diacritics_ShortDiacriticString() => Diacritics.Extensions.StringExtensions.HasDiacritics(Constants.ShortDiacriticString);

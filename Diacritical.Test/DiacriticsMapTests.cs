@@ -8,17 +8,16 @@ namespace Diacritical.Test;
 public class DiacriticsMapTests
 {
 	[Test]
-	public void AddProvider_GivenDuplicate_ThenThrows()
+	public void AddProviders_GivenDuplicate_ThenThrows()
 	{
 		var mockProvider = new CustomDiacriticProvider(new Dictionary<char, string>());
-		DiacriticMap.AddProvider(mockProvider);
+		DiacriticMap.AddProviders(mockProvider);
 
-		Assert.Throws<Exception>(() =>
-			DiacriticMap.AddProvider(mockProvider));
+		Assert.Throws<Exception>(() => DiacriticMap.AddProviders(mockProvider));
 	}
 
 	[Test]
-	public void AddProviders_GivenDuplicate_ThenThrows()
+	public void AddProviders_GivenDuplicates_ThenThrows()
 	{
 		var mockProviders = new []
 		{
@@ -28,22 +27,21 @@ public class DiacriticsMapTests
 
 		DiacriticMap.AddProviders(mockProviders);
 
-		Assert.Throws<Exception>(() =>
-			DiacriticMap.AddProviders(mockProviders));
+		Assert.Throws<Exception>(() => DiacriticMap.AddProviders(mockProviders));
 	}
 
 	[Test]
 	public void AddProviders_GivenDuplicateMappings_ThenTakeLast()
 	{
-		var mockProviders = new[]
-		{
+		IDiacriticProvider[] mockProviders =
+		[
 			new CustomDiacriticProvider(new Dictionary<char, string>{ { '~', "1" }}),
 			new CustomDiacriticProvider(new Dictionary<char, string>{ { '~', "2" }})
-		};
+		];
 
 		DiacriticMap.AddProviders(mockProviders);
 
 		var result = "~".RemoveDiacritics();
-		Assert.Equals("2", result);
+		Assert.That(result, Is.EqualTo("2"));
 	}
 }

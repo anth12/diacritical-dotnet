@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 
@@ -10,34 +11,27 @@ public class DiacriticMap
 {
 	static DiacriticMap()
 	{
-		AddProviders([
-			new DefaultDiacriticProvider()
-		]);
+		AddProviders(new DefaultDiacriticProvider());
 	}
 
 	#region Providers
 
-	private static readonly ConcurrentQueue<IDiacriticProvider> Providers = new();
+	private static readonly ConcurrentDictionary<IDiacriticProvider, int> Providers = new();
 
-	public static void AddProvider(IDiacriticProvider provider)
-	{
-		if (Providers.Contains(provider))
-			throw new Exception("Provider already added");
-
-		Providers.Enqueue(provider);
-		BuildIndex();
-	}
-
-	public static void AddProviders(IEnumerable<IDiacriticProvider> providers)
+	public static void AddProviders(params IDiacriticProvider[] providers)
 	{
 		foreach (var provider in providers)
 		{
-			if (Providers.Contains(provider))
+			if (!Providers.TryAdd(provider, Providers.Count))
 				throw new Exception("Provider already added");
-
-			Providers.Enqueue(provider);
 		}
+		
+		BuildIndex();
+	}
 
+	public static void RemoveProvider(IDiacriticProvider provider)
+	{
+		Providers.TryRemove(provider, out _);
 		BuildIndex();
 	}
 
@@ -50,18 +44,13 @@ public class DiacriticMap
 	private static void BuildIndex()
 	{
 		var mappings = new Dictionary<char, string>();
-			
-		foreach (var diacriticProvider in Providers)
+		foreach (var diacriticProvider in Providers.OrderBy(kv => kv.Value).Select(kv => kv.Key))
 		{
-			IDictionary<char, string> map = diacriticProvider.Provide();
-
-			foreach (KeyValuePair<char, string> mapping in map)
-			{
+			foreach (var mapping in diacriticProvider.Provide())
 				mappings[mapping.Key] = mapping.Value;
-			}
 		}
-
-		Interlocked.Exchange(ref Index, new DiacriticIndex(mappings.AsReadOnly()));
+		
+		Interlocked.Exchange(ref Index, new DiacriticIndex(new ReadOnlyDictionary<char, string>(mappings)));
 	}
 
 	#endregion

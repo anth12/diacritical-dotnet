@@ -12,7 +12,7 @@ public class StringExtensionTests
 	{
 		var result = input.RemoveDiacritics();
 
-		Assert.Equals(input, result);
+		Assert.That(result, Is.EqualTo(input));
 	}
 
 	[TestCase("Hello")]
@@ -22,7 +22,7 @@ public class StringExtensionTests
 	{
 		var result = input.RemoveDiacritics();
 
-		Assert.Equals(input, result);
+		Assert.That(result, Is.EqualTo(input));
 	}
 
 	[TestCase("Fußball", "Fussball")]
@@ -31,7 +31,7 @@ public class StringExtensionTests
 	{
 		var result = input.RemoveDiacritics();
 
-		Assert.Equals(expectedValue, result);
+		Assert.That(result, Is.EqualTo(expectedValue));
 	}
 
 	#endregion
@@ -44,7 +44,7 @@ public class StringExtensionTests
 	{
 		var result = input.HasDiacritics();
 
-		Assert.Equals(false, result);
+		Assert.That(result, Is.False);
 	}
 
 	[TestCase("Hello")]
@@ -54,7 +54,7 @@ public class StringExtensionTests
 	{
 		var result = input.HasDiacritics();
 
-		Assert.Equals(false, result);
+		Assert.That(result, Is.False);
 	}
 
 	[TestCase("Fußball")]
@@ -63,7 +63,7 @@ public class StringExtensionTests
 	{
 		var result = input.HasDiacritics();
 
-		Assert.Equals(true, result);
+		Assert.That(result, Is.True);
 	}
 
 	#endregion

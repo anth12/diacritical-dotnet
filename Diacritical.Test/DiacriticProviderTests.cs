@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Diacritical.Test.Mock;
 using NUnit.Framework;
 
@@ -12,7 +13,7 @@ public class DiacriticProviderTests
 	{
 		var result = input.RemoveDiacritics();
 
-		Assert.Equals(expectedValue, result);
+		Assert.That(result, Is.EqualTo(expectedValue));
 	}
 
 	[Test]
@@ -23,15 +24,14 @@ public class DiacriticProviderTests
 		var subject = "ₓ";
 
 		var result = subject.RemoveDiacritics();
-		Assert.Equals(x_lower, result);
+		Assert.That(result, Is.EqualTo(x_lower));
 
-		DiacriticMap.AddProvider(new CustomDiacriticProvider(new Dictionary<char, string>
+		DiacriticMap.AddProviders(new CustomDiacriticProvider(new Dictionary<char, string>
 		{
 			{ 'ₓ', x_upper }
 		}));
 
 		result = subject.RemoveDiacritics();
-		Assert.Equals(x_upper, result);
+		Assert.That(result, Is.EqualTo(x_upper));
 	}
-
 }
