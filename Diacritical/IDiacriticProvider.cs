@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Diacritical
+namespace Diacritical;
+
+public interface IDiacriticProvider
 {
-	public interface IDiacriticProvider
-	{
-		IDictionary<char, string> Provide();
-	}
+	IDictionary<char, string> Provide();
 }

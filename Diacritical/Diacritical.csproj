@@ -1,19 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Anthony Halliday</Authors>
     <RepositoryUrl>https://github.com/anth12/diacritical-dotnet</RepositoryUrl>
     <PackageProjectUrl>https://github.com/anth12/diacritical-dotnet</PackageProjectUrl>
     <Description>Replace Diacritic characters with ASCII equivalents.</Description>
-    <PackageLicenseFile></PackageLicenseFile>
     <PackageId>Diacritical.Net</PackageId>
 		<Title>Diacritical</Title>
 		<Product>Diacritical</Product>
     <PackageTags>diacritic;string-formatting;accent</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
     <PackageIconUrl>https://raw.githubusercontent.com/anth12/diacritical-dotnet/master/assets/diacritical.png</PackageIconUrl>
   </PropertyGroup>
 

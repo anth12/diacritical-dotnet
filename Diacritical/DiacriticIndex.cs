@@ -1,14 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 
-namespace Diacritical
+namespace Diacritical;
+
+internal class DiacriticIndex(ReadOnlyDictionary<char, string> map)
 {
-	internal class DiacriticIndex
-	{
-		public DiacriticIndex(IReadOnlyDictionary<char, string> map)
-        {
-            Map = map;
-		}
-
-		public IReadOnlyDictionary<char, string> Map { get; }
-	}
+	public ReadOnlyDictionary<char, string> Map { get; } = map;
 }
